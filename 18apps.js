@@ -20,6 +20,7 @@ taskForm.addEventListener("submit",
 
     if(task) {
         taskList.append(createTaskElement(task));
+        storeTaskInLocalStore(task);
         taskInput.value= "";
     }
    
@@ -70,4 +71,23 @@ taskForm.addEventListener("submit",
     }
 
   }
-  
+  // vamos a utilizar una API Aplication pragramming interface para poder tener persistencia en los datos de las tareas
+  // sse llama local store, no es una base de datos
+  //JSON.parce método que convierte una cadena de texto en formato JSON a un objeto o array en JS
+
+  function storeTaskInLocalStore(task){
+    const tasks =JSON.parse
+    (localStorage.getItem("tasks") || "[]")//este método convierte una cadena en formato texto a un objeto en JS
+     tasks.push(task);// agregar un elemento a un array existente
+     localStorage.setItem("tasks",JSON.stringify(tasks));
+  }
+
+  // Hasta aquí si refrescas la página las cosas van a quedar guardadas en localstore pero no se han inyectado en el DOM
+
+  function loadTasks(){              // función que se va a ejecutar cuando cargue la página
+      const tasks = JSON.parse
+      (localStorage.getItem("tasks") || "[]");
+      tasks.forEach((tasks =>{
+        tasksList.appendChild()
+      }))
+  }
